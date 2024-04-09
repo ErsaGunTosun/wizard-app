@@ -16,7 +16,7 @@ function App() {
       <div className="flex flex-row bg-red-500 w-full h-full justify-center">
         <div className="basis-3/6 h-full flex flex-col items-center justify-center bg-red-500 ">
           <div className='basis-1/6 flex flex-row justify-center items-center bg-red-500 w-full '>
-            <TiTick className='text-6xl text-white border-2  border-white rounded-full p-3' />
+            <TiTick className='text-6xl text-white border-2 border-white rounded-full p-3' />
 
             <div className="bg-white rounded-full h-4 w-4 mx-1"></div>
             <div className="bg-white rounded-full h-4 w-4 mx-1"></div>
