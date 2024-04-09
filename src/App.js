@@ -30,19 +30,19 @@ function App() {
 
             {/* Combo Boxes*/}
             <div className="hasis-3/5 w-full flex flex-row flex-wrap ">
-              <ComboBox placeholder={"You are"} />
-              <ComboBox placeholder={"You have"} />
-              <ComboBox placeholder={"Type of Project/Query"} />
-              <ComboBox placeholder={"Budget"} />
+              <ComboBox placeholder={"You are"} name={"youAre"} />
+              <ComboBox placeholder={"You have"} name={"youHave"} />
+              <ComboBox placeholder={"Type of Project/Query"} name={"typeOfProject"} />
+              <ComboBox placeholder={"Budget"}  name={"budget"}/>
             </div>
 
             {/* Action Buttons */}
             <div className="basis-1/5 flex flex-row items-center justify-center">
-              <button type="button" class="flex  items-center text-gray-500 bg-transparent border border-gray-500 font-medium rounded-md text-sm px-9 py-2 me-2 mb-2 ">
+              <button type="button" className="flex  items-center text-gray-500 bg-transparent border border-gray-500 font-medium rounded-md text-sm px-9 py-2 me-2 mb-2 ">
                 <MdKeyboardArrowLeft className="text-xl" />
                 Previous
               </button>
-              <button type="button" class="flex items-center text-white bg-red-500 border border-red-500 font-medium rounded-md text-sm px-12 py-2 me-2 mb-2 ">
+              <button type="button" className="flex items-center text-white bg-red-500 border border-red-500 font-medium rounded-md text-sm px-12 py-2 me-2 mb-2 ">
                 Next
                 <MdKeyboardArrowRight  className="text-xl"/>
               </button>
