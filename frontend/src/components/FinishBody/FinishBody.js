@@ -15,7 +15,7 @@ function FinishBody() {
   const form = useSelector(state => state.form)
 
   const handleStart = () => {
-    axios.post('http://localhost:4242/api/form/new', { form: form })
+    axios.post(process.env.REACT_APP_API_URL, { form: form })
       .then(rslt => {
         console.log(rslt);
       })

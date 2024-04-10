@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const FormSchema = new mongoose.Schema({
     id: {
-        type: Number,
+        type: String,
         unique: true
     },
     youAre: {

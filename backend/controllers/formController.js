@@ -1,4 +1,5 @@
 const Form = require("../models/formModel");
+const generateId = require('time-uuid');
 
 module.exports.newForm = async (req, res) => {
 
@@ -7,6 +8,7 @@ module.exports.newForm = async (req, res) => {
         console.log(youHave, youAre, typeOfProject, budget);
 
         const newForm = await Form.create({
+            id: generateId(),
             youHave: youHave.value,
             youAre: youAre.value,
             typeOfProject: typeOfProject.value,
