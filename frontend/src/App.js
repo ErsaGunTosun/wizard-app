@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
-
 // Components 
 import ProgressBar from "./components/ProgressBar/ProgressBar";
 import FormBody from "./components/FormBody/FormBody";
 import StartBody from "./components/StartBody/StartBody";
 import FinishBody from "./components/FinishBody/FinishBody";
-
 
 
 function App() {
@@ -27,7 +24,6 @@ function App() {
     }
 
   }
-
 
   return (
     <div className="App w-full h-full bg-red-500 ">

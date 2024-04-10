@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 
-import { setIsOpen, setValue } from "../../stores/form";
+import { setIsOpen, setValue, setError } from "../../stores/form";
 
 // icons 
 import { TiTick } from "react-icons/ti";
@@ -32,12 +32,20 @@ function ComboBox({ placeholder, name }) {
     const [items, setItems] = useState(itemsData)
     const [selectedItem, setSelectedItem] = useState('')
     const [open, setOpen] = useState(false)
+    const [errorStatus, setErrorStatus] = useState(false)
 
 
     useEffect(() => {
         Object.keys(form).map((key) => {
             if (key == name) {
                 setOpen(form[key].isOpen)
+                setErrorStatus(form[key].isError)
+                items.map((item) => {
+                    if (item.name == form[key].value) {
+                        item.isSelect = true
+                        setSelectedItem(form[key].value)
+                    }
+                })
             }
         })
     }, [form])
@@ -56,8 +64,9 @@ function ComboBox({ placeholder, name }) {
         if (tempItems[index].isSelect == true) {
             tempItems[index].isSelect = false
             setSelectedItem('')
-            dispatch(setValue({ name: name, value: ''}))
+            dispatch(setValue({ name: name, value: '' }))
         } else {
+            tempItems.map((item) => item.isSelect = false)
             tempItems[index].isSelect = !tempItems[index].isSelect
             setSelectedItem(tempItems[index].name)
             dispatch(setValue({ name: name, value: tempItems[index].name }))
@@ -107,6 +116,13 @@ function ComboBox({ placeholder, name }) {
                         ))
                     }
                 </div>}
+                {
+                    errorStatus ?
+                        <p className='bg-transparent text-red-500 font-semibold italic px-2'>Please fill all the field</p>
+                        :
+                        ""
+                }
+
             </div>
 
 

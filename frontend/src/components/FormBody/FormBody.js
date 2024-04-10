@@ -1,8 +1,9 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 
 // Redux
 import { nextProgress, prevProgress } from '../../stores/progress'
+import { setError } from '../../stores/form'
 
 //Components
 import ComboBox from '../ComboBox/ComboBox'
@@ -12,6 +13,26 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 function FormBody() {
     const dispatch = useDispatch()
+    const form = useSelector((state) => state.form)
+
+
+    const goNextProgress = ()=>{
+        let errorCount = 0;
+        Object.keys(form).forEach((key)=>{
+            if(form[key].value == ""){
+                dispatch(setError({name: key, isError: true}))
+                errorCount++
+            }
+            else{
+                dispatch(setError({name: key, isError: false}))
+            }
+        })
+ 
+        if(errorCount == 0){
+            dispatch(nextProgress())
+        }
+
+    }
 
     return (
         <div className="basis-3/6 flex flex-col bg-white w-full px-16 justify-center rounded-xl">
@@ -35,7 +56,7 @@ function FormBody() {
                     Previous
                 </button>
                 <button type="button" className="flex items-center text-white bg-red-500 border border-red-500 font-medium rounded-md text-sm px-12 py-2 me-2 mb-2 "
-                    onClick={() => dispatch(nextProgress())}>
+                    onClick={() => goNextProgress()}>
                     Next
                     <MdKeyboardArrowRight className="text-xl" />
                 </button>
