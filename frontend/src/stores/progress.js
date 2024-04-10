@@ -7,9 +7,17 @@ export const progress = createSlice({
     },
     reducers: {
         nextProgress: (state) => {
+            if(state.progressId === 3){
+                state.progressId = -1
+                return
+            }
             state.progressId += 1
         },
         prevProgress: (state) => {
+            if(state.progressId === 1){
+                state.progressId = 0
+                return
+            }
             state.progressId -= 1
         },
     }

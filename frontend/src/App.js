@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// Redux
-import { nextProgress, prevProgress } from './stores/progress'
+
 
 // Components 
 import ProgressBar from "./components/ProgressBar/ProgressBar";
-import ComboBox from "./components/ComboBox/ComboBox";
+import FormBody from "./components/FormBody/FormBody";
+import StartBody from "./components/StartBody/StartBody";
+import FinishBody from "./components/FinishBody/FinishBody";
 
-
-//icons
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 
 function App() {
   const dispatch = useDispatch();
+  const porgressId = useSelector((state) => state.progress.progressId);
+
+  const getBodyWithId = () => {
+    if (porgressId === 1) {
+      return <StartBody />
+    }
+    else if (porgressId === 2) {
+      return <FormBody />
+    }
+    else if (porgressId === 3) {
+      return <FinishBody />
+    }
+
+  }
+
+
   return (
     <div className="App w-full h-full bg-red-500 ">
       <div className="flex flex-row bg-red-500 w-full h-full justify-center">
@@ -25,35 +39,9 @@ function App() {
           </div>
 
           {/* Form */}
-          <div className="basis-3/6 flex flex-col bg-white w-full px-16 justify-center rounded-xl">
-
-            <div className="basis-1/5">
-              <p className="text-2xl text-center">Tell Us About Your Requirements</p>
-            </div>
-
-
-            <div className="hasis-3/5 w-full flex flex-row flex-wrap ">
-              <ComboBox placeholder={"You are"} name={"youAre"} />
-              <ComboBox placeholder={"You have"} name={"youHave"} />
-              <ComboBox placeholder={"Type of Project/Query"} name={"typeOfProject"} />
-              <ComboBox placeholder={"Budget"} name={"budget"} />
-            </div>
-
-
-            <div className="basis-1/5 flex flex-row items-center justify-center">
-              <button type="button" className="flex  items-center text-gray-500 bg-transparent border border-gray-500 font-medium rounded-md text-sm px-9 py-2 me-2 mb-2 "
-                onClick={() => dispatch(prevProgress())}>
-                <MdKeyboardArrowLeft className="text-xl" />
-                Previous
-              </button>
-              <button type="button" className="flex items-center text-white bg-red-500 border border-red-500 font-medium rounded-md text-sm px-12 py-2 me-2 mb-2 "
-              onClick={()=>dispatch(nextProgress())}>
-                Next
-                <MdKeyboardArrowRight className="text-xl" />
-              </button>
-            </div>
-
-          </div>
+          {
+            getBodyWithId()
+          }
 
           <div>
             <p className="text-white mt-4 text-lg">
